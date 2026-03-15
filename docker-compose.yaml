@@ -1,0 +1,21 @@
+services:
+  app:
+    build: ./docker/php
+    container_name: workout-app
+    volumes:
+      - .:/var/www
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    command: tail -f /dev/null
+
+  postgres:
+    image: postgres:16
+    container_name: workout-postgres
+    environment:
+      POSTGRES_DB: workout
+      POSTGRES_USER: workout
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5432"
