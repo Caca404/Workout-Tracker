@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\MuscleGroup;
+use Illuminate\Support\Str;
 
 class MuscleGroupSeeder extends Seeder
 {
@@ -23,7 +24,7 @@ class MuscleGroupSeeder extends Seeder
         ];
 
         foreach ($groups as $group) {
-            MuscleGroup::create(['name' => $group]);
+            MuscleGroup::create(['name' => $group,  'slug' => Str::slug($group)]);
         }
     }
 }

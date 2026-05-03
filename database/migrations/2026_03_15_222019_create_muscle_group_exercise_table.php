@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('muscle_group_exercise', function (Blueprint $table) {
+        Schema::create('exercise_muscle_group', function (Blueprint $table) {
             $table->foreignId('exercise_id')
                 ->constrained()
                 ->cascadeOnDelete();

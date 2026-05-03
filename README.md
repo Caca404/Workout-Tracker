@@ -184,12 +184,6 @@ docker compose exec app php artisan migrate
 docker compose exec app php artisan db:seed
 ```
 
-### Subir Laravel
-
-```
-docker compose exec app php artisan serve --host=0.0.0.0 --port=8000
-```
-
 A API estará disponível em:
 
 ```
@@ -274,6 +268,7 @@ Nesta versão são adicionadas melhorias de infraestrutura e performance.
 
 Novos componentes:
 
+* Sanctum para autenticação
 * Redis para cache
 * RabbitMQ para filas de processamento
 * Nginx como servidor web

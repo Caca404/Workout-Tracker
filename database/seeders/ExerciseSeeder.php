@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Database\Factories\ExerciseFactory;
+use App\Models\Exercise;
 use App\Models\Category;
 use App\Models\MuscleGroup;
 
@@ -18,7 +18,7 @@ class ExerciseSeeder extends Seeder
         $categories = Category::all();
         $muscleGroups = MuscleGroup::all();
 
-        ExerciseFactory::factory()
+        Exercise::factory()
             ->count(50)
             ->create()
             ->each(function ($exercise) use ($categories, $muscleGroups) {
