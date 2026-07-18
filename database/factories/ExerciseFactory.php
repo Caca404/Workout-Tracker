@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Exercise;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends Factory<Exercise>
@@ -44,6 +45,7 @@ class ExerciseFactory extends Factory
 
         return [
             'name' => $name,
+            'slug' => Str::slug($name),
             'description' => $this->faker->sentence(10),
         ];
     }

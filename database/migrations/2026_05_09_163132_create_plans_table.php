@@ -11,13 +11,27 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exercises', function (Blueprint $table) {
+        Schema::create('plans', function (Blueprint $table) {
             $table->id();
 
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained()
+                ->nullOnDelete();
+
             $table->string('name');
+
             $table->string('slug')->unique();
 
             $table->text('description')->nullable();
+
+            $table->enum('difficulty', [
+                'beginner',
+                'intermediate',
+                'advanced'
+            ])->default('beginner');
+
+            $table->boolean('is_template')->default(false);
 
             $table->timestamps();
         });
@@ -28,6 +42,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('exercises');
+        Schema::dropIfExists('plans');
     }
 };

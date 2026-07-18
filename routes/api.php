@@ -6,6 +6,7 @@ use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\WorkoutSessionController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/v1')->group(function () {
@@ -34,18 +35,26 @@ Route::prefix('/v1')->group(function () {
 
         Route::get('/report', [ReportController::class, 'index']);
 
-        Route::prefix('/plans')->group(function () {
-            Route::get('/', [PlanController::class, 'index']);
-            Route::post('/', [PlanController::class, 'store']);
-            Route::put('/{idPlan}', [PlanController::class, 'update']);
-            Route::delete('/{idPlan}', [PlanController::class, 'remove']);
-        });
+        Route::apiResource('/plans', PlanController::class);
 
-        Route::prefix('/schedules')->group(function () {
-            Route::get('/', [ScheduleController::class, 'index']);
-            Route::post('/', [ScheduleController::class, 'store']);
-            Route::put('/{idSchedule}', [ScheduleController::class, 'update']);
-            Route::delete('/{idSchedule}', [ScheduleController::class, 'remove']);
+        Route::apiResource('/schedules', ScheduleController::class);
+
+        Route::prefix('/workout-sessions')->group(function () {
+
+            Route::post('/start', [
+                WorkoutSessionController::class,
+                'start'
+            ]);
+
+            Route::post('/{workoutSession}/finish', [
+                WorkoutSessionController::class,
+                'finish'
+            ]);
+
+            Route::post('/{workoutSession}/abandon', [
+                WorkoutSessionController::class,
+                'abandon'
+            ]);
         });
     });
 });

@@ -12,8 +12,14 @@ class Exercise extends Model
 
     protected $fillable = [
         'name',
+        'slug',
         'description'
     ];
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 
     public function categories()
     {
@@ -23,5 +29,17 @@ class Exercise extends Model
     public function muscleGroups()
     {
         return $this->belongsToMany(MuscleGroup::class);
+    }
+
+    public function plans()
+    {
+        return $this->belongsToMany(Plan::class)
+            ->withPivot([
+                'sets',
+                'reps',
+                'weight',
+                'rest_seconds',
+                'order'
+            ]);
     }
 }

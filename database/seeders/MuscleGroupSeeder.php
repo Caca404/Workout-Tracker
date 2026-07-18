@@ -20,7 +20,9 @@ class MuscleGroupSeeder extends Seeder
             'Pernas',
             'Ombros',
             'Braços',
-            'Core'
+            'Core',
+            'Panturrilhas',
+            'Quadril'
         ];
 
         foreach ($groups as $group) {
